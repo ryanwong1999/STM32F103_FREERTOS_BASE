@@ -46,7 +46,11 @@ void Start_Task(void *pvParameters)
 /************************************************/
 void Err_Handle_Task(void *p_arg)
 {
-
+	while(1)
+	{		
+	
+		vTaskDelay(500);
+	}
 }
 
 
@@ -58,7 +62,11 @@ void Err_Handle_Task(void *p_arg)
 /************************************************/
 void Cammand_Task(void *p_arg)
 {
-
+	while(1)
+	{		
+	
+		vTaskDelay(500);
+	}
 }
 
 
@@ -70,7 +78,11 @@ void Cammand_Task(void *p_arg)
 /************************************************/
 void Test_Task(void *p_arg)
 {
-
+	while(1)
+	{		
+	
+		vTaskDelay(500);
+	}
 }
 
 
@@ -82,6 +94,10 @@ void Test_Task(void *p_arg)
 /************************************************/
 void LED_Task(void *p_arg)
 {
-
+	while(1)
+	{
+		LED_TOGGLE;
+		vTaskDelay(500);
+	}  
 }
 
