@@ -1,6 +1,9 @@
 #include "includes.h" 
 
-void Board_Init(void)
+/**
+ * @description: *****************************主程序开始*****************************
+ */
+static void Initializer(void)
 {
 	LED_Init();
 }
@@ -9,7 +12,7 @@ int main(void)
 {
 	taskENTER_CRITICAL();		//进入临界区
 	
-	Board_Init();
+	Initializer();
 		
 	//创建开始任务
 	//任务函数 任务名称 任务堆栈大小 任务参数 任务优先级 任务句柄
