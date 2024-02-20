@@ -5,6 +5,8 @@
  */
 static void Initializer(void)
 {
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);// 设置中断优先级分组2
+	uart_init(9600);	 //串口初始化为9600
 	LED_Init();
 }
 

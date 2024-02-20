@@ -47,8 +47,8 @@ void Start_Task(void *pvParameters)
 void Err_Handle_Task(void *p_arg)
 {
 	while(1)
-	{		
-	
+	{
+
 		vTaskDelay(500);
 	}
 }
@@ -60,12 +60,38 @@ void Err_Handle_Task(void *p_arg)
 //返回值：
 //备注：
 /************************************************/
+			
+u8 t;
+u8 len;	
+u16 times=0; 
 void Cammand_Task(void *p_arg)
 {
 	while(1)
 	{		
-	
-		vTaskDelay(500);
+		if(USART_RX_STA&0x8000)
+		{					   
+			len=USART_RX_STA&0x3fff;//得到此次接收到的数据长度
+			printf("\r\n您发送的消息为:\r\n");
+			for(t=0;t<len;t++)
+			{
+				USART1->DR=USART_RX_BUF[t];
+				while((USART1->SR&0X40)==0);//等待发送结束
+			}
+			printf("\r\n\r\n");//插入换行
+			USART_RX_STA=0;
+		}
+		else
+		{
+			times++;
+			if(times%5000==0)
+			{
+				printf("\r\nALIENTEK MiniSTM32开发板 串口实验\r\n");
+				printf("正点原子@ALIENTEK\r\n\r\n\r\n");
+			}
+			if(times%200==0)printf("请输入数据,以回车键结束\r\n");  
+			delay_ms(10);   
+		}
+		vTaskDelay(10);
 	}
 }
 
